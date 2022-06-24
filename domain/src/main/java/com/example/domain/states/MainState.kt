@@ -1,5 +1,10 @@
 package com.example.domain.states
 
-data class MainState(
-    val todo: String? = null
+sealed class MainState {
+    data class Success(val pokemonList: List<Pokemon>) : MainState()
+    data class Error(val message: String? = null) : MainState()
+}
+
+data class Pokemon(
+    val name: String
 )
