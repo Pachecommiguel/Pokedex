@@ -8,5 +8,7 @@ import javax.inject.Singleton
 class PokemonRepository @Inject constructor(
     private val webservice: PokemonWebservice
 ) {
-    suspend fun getAll() = webservice.getPokemonList()
+    suspend fun getAll() = webservice.getList()
+
+    suspend fun get(url: String) = webservice.get(url)
 }

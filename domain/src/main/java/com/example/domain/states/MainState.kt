@@ -6,5 +6,6 @@ sealed class MainState {
 }
 
 data class Pokemon(
-    val name: String
+    val name: String,
+    val image: String?
 )

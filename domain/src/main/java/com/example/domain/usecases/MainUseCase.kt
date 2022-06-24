@@ -11,7 +11,12 @@ class MainUseCase @Inject constructor(
 ) {
     suspend operator fun invoke() = try {
         MainState.Success(
-            repository.getAll().results.map { Pokemon(it.name) }
+            repository.getAll().results.map {
+                Pokemon(
+                    it.name,
+                    repository.get(it.url).sprites?.other?.officialArtwork?.frontDefault
+                )
+            }
         )
     } catch (e: Exception) {
         MainState.Error()
