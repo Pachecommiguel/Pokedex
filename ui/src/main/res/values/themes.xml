@@ -2,4 +2,13 @@
     <style name="Theme.Pokedex" parent="@android:style/Theme.NoTitleBar.Fullscreen">
 
     </style>
+
+    <style name="White">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="White.18" parent="White">
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

@@ -12,13 +12,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/main_layout_margin" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/main_image_width"
+            android:layout_height="@dimen/main_image_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{pokemon.name}"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:layout_marginStart="@dimen/main_name_margin_start"
+            style="@style/White.18"
             tools:text="name"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

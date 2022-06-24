@@ -16,7 +16,7 @@ class PokemonViewAdapter @Inject constructor(
             LayoutInflater.from(parent.context),
             parent,
             false
-        )
+        ), parent.context
     )
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {

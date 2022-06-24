@@ -14,7 +14,7 @@ class MainUseCase @Inject constructor(
             repository.get(item.url).let {
                 Pokemon(
                     it.id,
-                    item.name,
+                    item.name.replaceFirstChar(Char::uppercase),
                     it.sprites?.other?.officialArtwork?.frontDefault
                 )
             }
