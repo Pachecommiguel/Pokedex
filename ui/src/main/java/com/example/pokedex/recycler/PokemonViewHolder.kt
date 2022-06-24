@@ -9,6 +9,6 @@ class PokemonViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(pokemon: Pokemon) {
-
+        binding.pokemon = pokemon
     }
 }
