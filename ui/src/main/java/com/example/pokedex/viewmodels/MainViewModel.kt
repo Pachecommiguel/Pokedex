@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.domain.states.MainState
+import com.example.domain.states.MainStateResult
 import com.example.domain.usecases.MainUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,6 +15,9 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val state: LiveData<MainState> = liveData {
-        emit(useCase())
+        when(val result = useCase()) {
+            is MainStateResult.Success -> emit(result.state)
+            is MainStateResult.Error -> TODO()
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.pokedex.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.domain.states.MainState
 import com.example.pokedex.databinding.FragmentMainBinding
+import com.example.pokedex.recycler.PokemonViewAdapter
 import com.example.pokedex.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
+
+    @Inject
+    lateinit var adapter: PokemonViewAdapter
 
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
@@ -22,16 +26,15 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentMainBinding.inflate(inflater)
-        .also { binding = it }
-        .root
+    ) = FragmentMainBinding.inflate(inflater).also { binding = it }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.adapter = adapter
         viewModel.state.observe(viewLifecycleOwner, ::onState)
     }
 
     private fun onState(state: MainState) {
-        Log.e("state -> ", state.toString())
+        adapter.submitList(state.pokemonList)
     }
 }
