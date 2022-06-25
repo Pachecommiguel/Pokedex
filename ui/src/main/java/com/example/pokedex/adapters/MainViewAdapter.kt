@@ -1,5 +1,6 @@
 package com.example.pokedex.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -25,6 +26,7 @@ class MainViewAdapter(
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bind(getItem(position), listener)
+        if (position == 0) listener.onPokemon()
     }
 
     inner class MainViewHolder(

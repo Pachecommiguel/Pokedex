@@ -10,8 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.pokedex.adapters.MainLoadStateAdapter
-import com.example.pokedex.databinding.FragmentMainBinding
 import com.example.pokedex.adapters.MainViewAdapter
+import com.example.pokedex.databinding.FragmentMainBinding
+import com.example.pokedex.viewmodels.ACTION_NAVIGATE_UP
 import com.example.pokedex.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -51,10 +52,14 @@ class MainFragment : Fragment() {
     }
 
     private fun onNavDirection(direction: NavDirections) {
-        findNavController().navigate(direction)
+        when(direction) {
+            ACTION_NAVIGATE_UP -> findNavController().navigateUp()
+            else -> findNavController().navigate(direction)
+        }
     }
 }
 
 interface OnPokemonClickListener {
     fun onPokemonClick(id: Int?)
+    fun onPokemon()
 }

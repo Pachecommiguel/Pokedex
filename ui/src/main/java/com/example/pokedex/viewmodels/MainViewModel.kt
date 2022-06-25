@@ -1,5 +1,6 @@
 package com.example.pokedex.viewmodels
 
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,10 +28,23 @@ class MainViewModel @Inject constructor(
         id?.let { navDirection.value = MainFragmentDirections.actionMainToDetails(it) }
     }
 
+    override fun onPokemon() {
+        navDirection.value = ACTION_NAVIGATE_UP
+    }
+
     fun getNavDirection(): LiveData<NavDirections> = navDirection
 
-    fun getState() = when(::state.isInitialized) {
-        true -> state
-        false -> useCase().cachedIn(viewModelScope).also { state = it }
+    fun getState(): Flow<PagingData<MainState>> {
+        if(!::state.isInitialized) {
+            navDirection.value = MainFragmentDirections.actionMainToLoading()
+            state = useCase().cachedIn(viewModelScope)
+        }
+
+        return state
     }
+}
+
+val ACTION_NAVIGATE_UP = object : NavDirections {
+    override val actionId = -1
+    override val arguments: Bundle = Bundle.EMPTY
 }

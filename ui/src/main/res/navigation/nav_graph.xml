@@ -16,6 +16,10 @@
             android:id="@+id/action_main_to_details"
             app:destination="@id/detailsFragment" />
 
+        <action
+            android:id="@+id/action_main_to_loading"
+            app:destination="@id/loadingFragment" />
+
     </fragment>
 
     <fragment
@@ -29,4 +33,11 @@
             app:argType="integer" />
 
     </fragment>
+
+    <dialog
+        android:id="@+id/loadingFragment"
+        android:name="com.example.pokedex.fragments.LoadingFragment"
+        android:label="LoadingFragment"
+        tools:layout="@layout/fragment_loading" />
+
 </navigation>
