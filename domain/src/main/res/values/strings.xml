@@ -6,4 +6,7 @@
 
     <string name="loading_title">One moment</string>
     <string name="loading_description" tools:ignore="TypographyEllipsis">Pokedex is loading. Please wait...</string>
+
+    <string name="error_title">Oops?</string>
+    <string name="error_description">Pokedex stopped working</string>
 </resources>

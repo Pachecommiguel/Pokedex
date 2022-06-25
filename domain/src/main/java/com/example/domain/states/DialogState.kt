@@ -1,6 +1,6 @@
 package com.example.domain.states
 
-data class LoadingState(
+data class DialogState(
     val title: String,
     val description: String
 )

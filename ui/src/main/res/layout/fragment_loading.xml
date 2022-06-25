@@ -6,7 +6,7 @@
     <data>
         <variable
             name="state"
-            type="com.example.domain.states.LoadingState" />
+            type="com.example.domain.states.DialogState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,34 +16,33 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateDrawable="@drawable/custom_progress_bar_red"
             android:layout_marginBottom="@dimen/default_layout_margin"
+            android:indeterminateDrawable="@drawable/custom_progress_bar_red"
+            android:layout_marginEnd="@dimen/dialog_layout_margin"
             app:layout_constraintBottom_toTopOf="@+id/title"
-            app:layout_constraintEnd_toEndOf="@+id/title"
-            app:layout_constraintStart_toStartOf="@+id/title" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/title"
+            style="@style/White.Bold.18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{state.title}"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/dialog_layout_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="title"
-            style="@style/White.Bold.18" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="title" />
 
         <TextView
+            style="@style/White.Regular.18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{state.description}"
             android:layout_marginTop="@dimen/default_layout_margin"
-            app:layout_constraintTop_toBottomOf="@+id/title"
+            android:text="@{state.description}"
             app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintEnd_toEndOf="@+id/title"
-            tools:text="description"
-            style="@style/White.Regular.18" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

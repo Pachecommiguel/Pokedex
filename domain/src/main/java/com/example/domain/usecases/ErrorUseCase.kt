@@ -5,10 +5,10 @@ import com.example.domain.application.App
 import com.example.domain.states.DialogState
 import javax.inject.Inject
 
-class LoadingUseCase @Inject constructor() {
+class ErrorUseCase @Inject constructor() {
 
     operator fun invoke() = DialogState(
-        App.resources.getString(R.string.loading_title),
-        App.resources.getString(R.string.loading_description)
+        App.resources.getString(R.string.error_title),
+        App.resources.getString(R.string.error_description)
     )
 }
