@@ -2,7 +2,7 @@ package com.example.domain.states
 
 sealed class MainStateResult {
     data class Success(val state: MainState) : MainStateResult()
-    data class Error(val message: String? = null) : MainStateResult()
+    data class Error(val message: Int) : MainStateResult()
 }
 
 data class MainState(

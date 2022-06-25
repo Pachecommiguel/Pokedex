@@ -42,8 +42,11 @@ class MainViewModel @Inject constructor(
         navDirection.value = MainFragmentDirections.actionMainToLoading()
         val result = useCase()
         navDirection.value = when(result) {
-            is MainStateResult.Error -> LoadingFragmentDirections.actionLoadingToError(this@MainViewModel)
             is MainStateResult.Success -> ACTION_NAVIGATE_UP
+            is MainStateResult.Error -> LoadingFragmentDirections.actionLoadingToError(
+                this@MainViewModel,
+                result.message
+            )
         }
 
         return (result as? MainStateResult.Success)?.state

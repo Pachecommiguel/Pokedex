@@ -10,4 +10,7 @@
     <string name="details_height_label">HEIGHT :</string>
     <string name="details_weight_label">WEIGHT :</string>
     <string name="details_moves_label">MOVES</string>
+
+    <string name="error_default">Unable to connect</string>
+    <string name="error_empty">No results available</string>
 </resources>

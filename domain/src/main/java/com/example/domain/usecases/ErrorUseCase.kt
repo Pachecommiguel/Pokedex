@@ -7,7 +7,8 @@ import javax.inject.Inject
 
 class ErrorUseCase @Inject constructor() {
 
-    operator fun invoke() = ErrorState(
-        App.resources.getString(R.string.error_button)
+    operator fun invoke(message: Int) = ErrorState(
+        App.resources.getString(R.string.error_button),
+        App.resources.getString(message)
     )
 }

@@ -17,9 +17,9 @@ class MainUseCase @Inject constructor(
             repository.get(it.url).toPokemon()
         }?.let {
             MainStateResult.Success(MainState(it))
-        } ?: MainStateResult.Error()
+        } ?: MainStateResult.Error(R.string.error_empty)
     } catch (e: Exception) {
-        MainStateResult.Error()
+        MainStateResult.Error(R.string.error_default)
     }
 }
 

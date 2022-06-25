@@ -46,6 +46,10 @@
             android:name="listener"
             app:argType="com.example.pokedex.viewmodels.OnErrorClickListener" />
 
+        <argument
+            android:name="message"
+            app:argType="integer" />
+
     </dialog>
 
     <fragment
