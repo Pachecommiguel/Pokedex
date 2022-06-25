@@ -12,5 +12,15 @@
         android:label="fragment_menu"
         tools:layout="@layout/fragment_main" >
 
+        <action
+            android:id="@+id/action_main_to_loading"
+            app:destination="@id/loadingFragment" />
+
     </fragment>
+
+    <dialog
+        android:id="@+id/loadingFragment"
+        android:name="com.example.pokedex.fragments.LoadingFragment"
+        android:label="LoadingFragment" />
+
 </navigation>
