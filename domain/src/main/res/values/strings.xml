@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="pokemon_default_stat">Unknown</string>
     <string name="pokemon_default_height">-- cm</string>
     <string name="pokemon_default_weight">-- kg</string>
+
+    <string name="loading_title">One moment</string>
+    <string name="loading_description" tools:ignore="TypographyEllipsis">Pokedex is loading. Please wait...</string>
 </resources>
