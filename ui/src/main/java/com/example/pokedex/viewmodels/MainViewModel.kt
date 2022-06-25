@@ -1,6 +1,7 @@
 package com.example.pokedex.viewmodels
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import com.example.domain.states.MainState
@@ -8,6 +9,7 @@ import com.example.domain.states.MainStateResult
 import com.example.domain.usecases.MainUseCase
 import com.example.pokedex.fragments.LoadingFragmentDirections
 import com.example.pokedex.fragments.MainFragmentDirections
+import com.example.pokedex.fragments.OnPokemonClickListener
 import com.example.pokedex.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val useCase: MainUseCase
-) : ViewModel(), OnClickListener {
+) : ViewModel(), OnErrorClickListener, OnPokemonClickListener {
 
     private val navDirection: SingleLiveEvent<NavDirections> = SingleLiveEvent()
     val state: MutableLiveData<MainState> = liveData {
@@ -32,6 +34,10 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    override fun onPokemonClick(id: Int) {
+        navDirection.value = MainFragmentDirections.actionMainToDetails(id)
+    }
+
     private suspend fun getState(): MainState? {
         navDirection.value = MainFragmentDirections.actionMainToLoading()
         val result = useCase()
@@ -44,7 +50,7 @@ class MainViewModel @Inject constructor(
     }
 }
 
-interface OnClickListener : Serializable {
+interface OnErrorClickListener : Serializable {
     fun onClick()
 }
 

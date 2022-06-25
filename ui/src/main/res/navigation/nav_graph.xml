@@ -16,12 +16,17 @@
             android:id="@+id/action_main_to_loading"
             app:destination="@id/loadingFragment" />
 
+        <action
+            android:id="@+id/action_main_to_details"
+            app:destination="@id/detailsFragment" />
+
     </fragment>
 
     <dialog
         android:id="@+id/loadingFragment"
         android:name="com.example.pokedex.fragments.LoadingFragment"
-        android:label="LoadingFragment" >
+        android:label="LoadingFragment"
+        tools:layout="@layout/fragment_loading" >
 
         <action
             android:id="@+id/action_loading_to_error"
@@ -34,12 +39,25 @@
     <dialog
         android:id="@+id/errorFragment"
         android:name="com.example.pokedex.fragments.ErrorFragment"
-        android:label="ErrorFragment" >
+        android:label="ErrorFragment"
+        tools:layout="@layout/fragment_error" >
 
         <argument
             android:name="listener"
-            app:argType="com.example.pokedex.viewmodels.OnClickListener" />
+            app:argType="com.example.pokedex.viewmodels.OnErrorClickListener" />
 
     </dialog>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.pokedex.fragments.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details" >
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+    </fragment>
 
 </navigation>

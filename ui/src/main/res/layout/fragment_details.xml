@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="pokemon"
-            type="com.example.domain.states.Pokemon" />
+            name="state"
+            type="com.example.domain.states.DetailsState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{pokemon.name}"
+            android:text="@{state.name}"
             app:layout_constraintTop_toTopOf="@+id/image"
             app:layout_constraintBottom_toBottomOf="@+id/image"
             app:layout_constraintStart_toEndOf="@+id/image"

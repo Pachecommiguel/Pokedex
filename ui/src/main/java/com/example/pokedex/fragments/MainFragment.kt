@@ -14,12 +14,11 @@ import com.example.pokedex.recycler.PokemonViewAdapter
 import com.example.pokedex.viewmodels.ACTION_NAVIGATE_UP
 import com.example.pokedex.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    @Inject lateinit var adapter: PokemonViewAdapter
+    private lateinit var adapter: PokemonViewAdapter
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
 
@@ -31,7 +30,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = adapter
+        adapter = PokemonViewAdapter(viewModel).also {
+            binding.recyclerView.adapter = it
+        }
         viewModel.getNavDirection().observe(viewLifecycleOwner, ::onNavDirection)
         viewModel.state.observe(viewLifecycleOwner, ::onState)
     }
@@ -46,4 +47,8 @@ class MainFragment : Fragment() {
             else -> findNavController().navigate(direction)
         }
     }
+}
+
+interface OnPokemonClickListener {
+    fun onPokemonClick(id: Int)
 }

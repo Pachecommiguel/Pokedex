@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.domain.states.Pokemon
 import com.example.pokedex.databinding.RecyclerViewItemBinding
-import javax.inject.Inject
+import com.example.pokedex.fragments.OnPokemonClickListener
 
-class PokemonViewAdapter @Inject constructor(
-
+class PokemonViewAdapter(
+    private val listener: OnPokemonClickListener
 ) : ListAdapter<Pokemon, PokemonViewHolder>(PokemonDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PokemonViewHolder(
@@ -20,6 +20,6 @@ class PokemonViewAdapter @Inject constructor(
     )
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), listener)
     }
 }
