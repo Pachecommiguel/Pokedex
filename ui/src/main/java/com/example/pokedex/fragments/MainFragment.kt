@@ -39,6 +39,7 @@ class MainFragment : Fragment() {
 
     private fun setViewModel() {
         viewModel.getNavDirection().observe(viewLifecycleOwner, ::onNavDirection)
+        viewModel.getIsRetry().observe(viewLifecycleOwner, ::onIsRetry)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getState().collectLatest(adapter::submitData)
         }
@@ -49,6 +50,9 @@ class MainFragment : Fragment() {
         binding.recyclerView.adapter = adapter.withLoadStateFooter(
             MainLoadStateAdapter(adapter::retry)
         )
+        viewLifecycleOwner.lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest(viewModel::onLoadStateFlow)
+        }
     }
 
     private fun onNavDirection(direction: NavDirections) {
@@ -57,9 +61,8 @@ class MainFragment : Fragment() {
             else -> findNavController().navigate(direction)
         }
     }
-}
 
-interface OnPokemonClickListener {
-    fun onPokemonClick(id: Int?)
-    fun onPokemon()
+    private fun onIsRetry(isRetry: Boolean) {
+        if (isRetry) adapter.retry()
+    }
 }

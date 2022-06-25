@@ -1,6 +1,5 @@
 package com.example.pokedex.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -10,10 +9,10 @@ import com.bumptech.glide.Glide
 import com.example.domain.states.MainState
 import com.example.pokedex.R
 import com.example.pokedex.databinding.MainRecyclerViewItemBinding
-import com.example.pokedex.fragments.OnPokemonClickListener
+import com.example.pokedex.viewmodels.MainClickListener
 
 class MainViewAdapter(
-    private val listener: OnPokemonClickListener
+    private val listener: MainClickListener
 ) : PagingDataAdapter<MainState, MainViewAdapter.MainViewHolder>(MainDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MainViewHolder(
@@ -33,7 +32,7 @@ class MainViewAdapter(
         private val binding: MainRecyclerViewItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(state: MainState?, listener: OnPokemonClickListener) {
+        fun bind(state: MainState?, listener: MainClickListener) {
             binding.state = state
             binding.layout.setOnClickListener { listener.onPokemonClick(state?.id) }
             Glide.with(binding.root)

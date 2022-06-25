@@ -38,6 +38,26 @@
         android:id="@+id/loadingFragment"
         android:name="com.example.pokedex.fragments.LoadingFragment"
         android:label="LoadingFragment"
-        tools:layout="@layout/fragment_loading" />
+        tools:layout="@layout/fragment_loading" >
+
+        <action
+            android:id="@+id/action_loading_to_error"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/loadingFragment"
+            app:destination="@id/errorFragment" />
+
+    </dialog>
+
+    <dialog
+        android:id="@+id/errorFragment"
+        android:name="com.example.pokedex.fragments.ErrorFragment"
+        android:label="ErrorFragment"
+        tools:layout="@layout/fragment_error">
+
+        <argument
+            android:name="listener"
+            app:argType="com.example.pokedex.viewmodels.MainClickListener" />
+
+    </dialog>
 
 </navigation>
