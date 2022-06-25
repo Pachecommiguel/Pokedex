@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.domain.states.DetailsState
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentDetailsBinding
-import com.example.pokedex.recycler.PokemonDetailsViewAdapter
+import com.example.pokedex.adapters.DetailsViewAdapter
 import com.example.pokedex.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +21,7 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
     private val args: DetailsFragmentArgs by navArgs()
-    private lateinit var adapter: PokemonDetailsViewAdapter
+    private lateinit var adapter: DetailsViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +31,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PokemonDetailsViewAdapter().also {
+        adapter = DetailsViewAdapter().also {
             binding.detailsRecyclerView.adapter = it
         }
         viewModel.args = args

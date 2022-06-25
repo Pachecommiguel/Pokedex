@@ -9,8 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.example.pokedex.adapters.MainLoadStateAdapter
 import com.example.pokedex.databinding.FragmentMainBinding
-import com.example.pokedex.recycler.PokemonViewAdapter
+import com.example.pokedex.adapters.MainViewAdapter
 import com.example.pokedex.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private lateinit var adapter: PokemonViewAdapter
+    private lateinit var adapter: MainViewAdapter
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
 
@@ -31,15 +32,22 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PokemonViewAdapter(viewModel).also {
-            binding.recyclerView.adapter = it
-        }
+        setAdapter()
+        setViewModel()
+    }
+
+    private fun setViewModel() {
         viewModel.getNavDirection().observe(viewLifecycleOwner, ::onNavDirection)
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getState().collectLatest {
-                adapter.submitData(it)
-            }
+            viewModel.getState().collectLatest(adapter::submitData)
         }
+    }
+
+    private fun setAdapter() {
+        adapter = MainViewAdapter(viewModel)
+        binding.recyclerView.adapter = adapter.withLoadStateFooter(
+            MainLoadStateAdapter(adapter::retry)
+        )
     }
 
     private fun onNavDirection(direction: NavDirections) {
