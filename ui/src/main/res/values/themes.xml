@@ -24,4 +24,10 @@
     <style name="White.Bold.20" parent="White.Bold">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="Button">
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/shape_red</item>
+    </style>
 </resources>

@@ -6,6 +6,5 @@
 
     <dimen name="main_name_margin_start">20dp</dimen>
 
-    <dimen name="error_button_width">110dp</dimen>
-    <dimen name="error_button_height">40dp</dimen>
+    <dimen name="load_button_width">150dp</dimen>
 </resources>

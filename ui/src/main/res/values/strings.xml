@@ -5,5 +5,5 @@
     <string name="details_weight_label">WEIGHT :</string>
     <string name="details_moves_label">MOVES</string>
 
-    <string name="error_button">Retry</string>
+    <string name="retry_button">Retry</string>
 </resources>
