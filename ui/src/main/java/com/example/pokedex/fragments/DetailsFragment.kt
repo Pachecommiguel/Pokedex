@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.domain.states.DetailsState
 import com.example.pokedex.databinding.FragmentDetailsBinding
+import com.example.pokedex.recycler.PokemonDetailsViewAdapter
 import com.example.pokedex.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +20,7 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
     private val args: DetailsFragmentArgs by navArgs()
+    private lateinit var adapter: PokemonDetailsViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,14 +30,16 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter = PokemonDetailsViewAdapter().also {
+            binding.detailsRecyclerView.adapter = it
+        }
         viewModel.args = args
         viewModel.state.observe(viewLifecycleOwner, ::onState)
     }
 
     private fun onState(state: DetailsState) {
         binding.state = state
-        Glide.with(requireContext())
-            .load(state.image)
-            .into(binding.image)
+        Glide.with(requireContext()).load(state.image).into(binding.image)
+        adapter.submitList(state.moves)
     }
 }

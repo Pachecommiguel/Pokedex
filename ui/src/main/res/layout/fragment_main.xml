@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/recycler_view_item">
+        tools:listitem="@layout/main_recycler_view_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

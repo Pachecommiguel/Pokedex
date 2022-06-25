@@ -25,6 +25,6 @@ class MainUseCase @Inject constructor(
 
 private fun PokemonResponse.toPokemon() = Pokemon(
     this.id,
-    this.name?.replaceFirstChar(Char::uppercase) ?: App.resources.getString(R.string.pokemon_default_name),
+    this.name?.replaceFirstChar(Char::uppercase) ?: App.resources.getString(R.string.pokemon_default_stat),
     this.sprites?.other?.officialArtwork?.frontDefault
 )

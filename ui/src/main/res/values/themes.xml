@@ -8,7 +8,16 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="White.18" parent="White">
+    <style name="White.Bold" parent="White">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="White.Regular" parent="White" />
+    <style name="White.Regular.18" parent="White.Regular">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="White.Bold.18" parent="White.Bold">
         <item name="android:textSize">18sp</item>
     </style>
 
