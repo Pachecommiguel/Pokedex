@@ -19,9 +19,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    @Inject
-    lateinit var adapter: PokemonViewAdapter
-
+    @Inject lateinit var adapter: PokemonViewAdapter
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
 

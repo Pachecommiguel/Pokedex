@@ -4,4 +4,7 @@
     <dimen name="main_image_width">150dp</dimen>
     <dimen name="main_image_height">150dp</dimen>
     <dimen name="main_name_margin_start">20dp</dimen>
+
+    <dimen name="error_button_width">110dp</dimen>
+    <dimen name="error_button_height">40dp</dimen>
 </resources>

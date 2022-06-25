@@ -1,36 +1,51 @@
 package com.example.pokedex.viewmodels
 
 import android.os.Bundle
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import com.example.domain.states.MainState
 import com.example.domain.states.MainStateResult
 import com.example.domain.usecases.MainUseCase
+import com.example.pokedex.fragments.LoadingFragmentDirections
 import com.example.pokedex.fragments.MainFragmentDirections
 import com.example.pokedex.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import java.io.Serializable
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val useCase: MainUseCase
-) : ViewModel() {
+) : ViewModel(), OnClickListener {
 
     private val navDirection: SingleLiveEvent<NavDirections> = SingleLiveEvent()
-    val state: LiveData<MainState> = liveData {
-        navDirection.value = MainFragmentDirections.actionMainToLoading()
-        when(val result = useCase()) {
-            is MainStateResult.Success -> {
-                emit(result.state)
-                navDirection.value = ACTION_NAVIGATE_UP
-            }
-            is MainStateResult.Error -> TODO()
+    val state: MutableLiveData<MainState> = liveData {
+        getState()?.let { emit(it) }
+    } as MutableLiveData<MainState>
+
+    fun getNavDirection(): LiveData<NavDirections> = navDirection
+
+    override fun onClick() {
+        viewModelScope.launch {
+            getState()?.let { state.value = it }
         }
     }
 
-    fun getNavDirection(): LiveData<NavDirections> = navDirection
+    private suspend fun getState(): MainState? {
+        navDirection.value = MainFragmentDirections.actionMainToLoading()
+        val result = useCase()
+        navDirection.value = when(result) {
+            is MainStateResult.Error -> LoadingFragmentDirections.actionLoadingToError(this@MainViewModel)
+            is MainStateResult.Success -> ACTION_NAVIGATE_UP
+        }
+
+        return (result as? MainStateResult.Success)?.state
+    }
+}
+
+interface OnClickListener : Serializable {
+    fun onClick()
 }
 
 val ACTION_NAVIGATE_UP = object : NavDirections {

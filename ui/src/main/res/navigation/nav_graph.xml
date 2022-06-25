@@ -21,6 +21,25 @@
     <dialog
         android:id="@+id/loadingFragment"
         android:name="com.example.pokedex.fragments.LoadingFragment"
-        android:label="LoadingFragment" />
+        android:label="LoadingFragment" >
+
+        <action
+            android:id="@+id/action_loading_to_error"
+            app:popUpTo="@id/loadingFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/errorFragment" />
+
+    </dialog>
+
+    <dialog
+        android:id="@+id/errorFragment"
+        android:name="com.example.pokedex.fragments.ErrorFragment"
+        android:label="ErrorFragment" >
+
+        <argument
+            android:name="listener"
+            app:argType="com.example.pokedex.viewmodels.OnClickListener" />
+
+    </dialog>
 
 </navigation>
