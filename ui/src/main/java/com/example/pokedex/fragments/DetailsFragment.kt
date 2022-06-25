@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.domain.states.DetailsState
+import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentDetailsBinding
 import com.example.pokedex.recycler.PokemonDetailsViewAdapter
 import com.example.pokedex.viewmodels.DetailsViewModel
@@ -39,7 +40,11 @@ class DetailsFragment : Fragment() {
 
     private fun onState(state: DetailsState) {
         binding.state = state
-        Glide.with(requireContext()).load(state.image).into(binding.image)
         adapter.submitList(state.moves)
+        Glide.with(requireContext())
+            .load(state.image)
+            .placeholder(R.drawable.pokeball)
+            .error(R.drawable.pokeball)
+            .into(binding.image)
     }
 }

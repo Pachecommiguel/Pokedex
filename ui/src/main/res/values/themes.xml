@@ -21,6 +21,10 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="White.Bold.20" parent="White.Bold">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="Dialog" parent="Theme.AppCompat.Light.Dialog" />
     <style name="Dialog.Fullscreen" parent="Dialog">
         <item name="android:backgroundDimEnabled">true</item>
