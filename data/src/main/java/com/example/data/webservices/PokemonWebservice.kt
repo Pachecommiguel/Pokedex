@@ -12,5 +12,5 @@ interface PokemonWebservice {
     suspend fun getList() : PokemonListResponse
 
     @GET
-    suspend fun get(@Url url: String) : PokemonResponse
+    suspend fun get(@Url url: String?) : PokemonResponse
 }

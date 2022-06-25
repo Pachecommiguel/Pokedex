@@ -13,7 +13,7 @@ class PokemonRepository @Inject constructor(
 
     suspend fun getAll() = webservice.getList()
 
-    suspend fun get(url: String) = webservice.get(url).also {
+    suspend fun get(url: String?) = webservice.get(url).also {
         pokemonMap[it.id] = it
     }
 
