@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="pokemon"
-            type="com.example.domain.states.Pokemon" />
+            name="state"
+            type="com.example.domain.states.MainState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{pokemon.name}"
+            android:text="@{state.name}"
             app:layout_constraintTop_toTopOf="@+id/image"
             app:layout_constraintBottom_toBottomOf="@+id/image"
             app:layout_constraintStart_toEndOf="@+id/image"

@@ -35,7 +35,7 @@ class MainFragment : Fragment() {
             binding.recyclerView.adapter = it
         }
         viewModel.getNavDirection().observe(viewLifecycleOwner, ::onNavDirection)
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getState().collectLatest {
                 adapter.submitData(it)
             }

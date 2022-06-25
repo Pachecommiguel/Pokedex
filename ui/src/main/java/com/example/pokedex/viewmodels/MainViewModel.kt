@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.domain.states.Pokemon
+import com.example.domain.states.MainState
 import com.example.domain.usecases.MainUseCase
 import com.example.pokedex.fragments.MainFragmentDirections
 import com.example.pokedex.fragments.OnPokemonClickListener
@@ -28,5 +28,5 @@ class MainViewModel @Inject constructor(
 
     fun getNavDirection(): LiveData<NavDirections> = navDirection
 
-    fun getState(): Flow<PagingData<Pokemon>> = useCase().cachedIn(viewModelScope)
+    fun getState(): Flow<PagingData<MainState>> = useCase().cachedIn(viewModelScope)
 }
