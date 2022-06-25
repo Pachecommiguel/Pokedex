@@ -1,25 +1,23 @@
 package com.example.domain.usecases
 
+import androidx.paging.map
 import com.example.data.repositories.PokemonRepository
 import com.example.data.responses.generated.PokemonResponse
 import com.example.domain.R
 import com.example.domain.application.App
-import com.example.domain.states.MainState
-import com.example.domain.states.MainStateResult
 import com.example.domain.states.Pokemon
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.mapLatest
 import javax.inject.Inject
 
 class MainUseCase @Inject constructor(
     private val repository: PokemonRepository
 ) {
-    suspend operator fun invoke() = try {
-        repository.getAll().results?.map {
-            repository.get(it.url).toPokemon()
-        }?.let {
-            MainStateResult.Success(MainState(it))
-        } ?: MainStateResult.Error(R.string.error_empty)
-    } catch (e: Exception) {
-        MainStateResult.Error(R.string.error_default)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    operator fun invoke() = repository.getNext().mapLatest {
+        it.map { item ->
+            repository.get(item.url).toPokemon()
+        }
     }
 }
 

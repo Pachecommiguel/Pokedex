@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.domain.states.MainState
 import com.example.pokedex.databinding.FragmentMainBinding
 import com.example.pokedex.recycler.PokemonViewAdapter
-import com.example.pokedex.viewmodels.ACTION_NAVIGATE_UP
 import com.example.pokedex.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -34,21 +35,18 @@ class MainFragment : Fragment() {
             binding.recyclerView.adapter = it
         }
         viewModel.getNavDirection().observe(viewLifecycleOwner, ::onNavDirection)
-        viewModel.state.observe(viewLifecycleOwner, ::onState)
-    }
-
-    private fun onState(state: MainState) {
-        adapter.submitList(state.pokemonList)
+        lifecycleScope.launch {
+            viewModel.getState().collectLatest {
+                adapter.submitData(it)
+            }
+        }
     }
 
     private fun onNavDirection(direction: NavDirections) {
-        when(direction) {
-            ACTION_NAVIGATE_UP -> findNavController().navigateUp()
-            else -> findNavController().navigate(direction)
-        }
+        findNavController().navigate(direction)
     }
 }
 
 interface OnPokemonClickListener {
-    fun onPokemonClick(id: Int)
+    fun onPokemonClick(id: Int?)
 }

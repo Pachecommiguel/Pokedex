@@ -11,11 +11,11 @@ class PokemonViewHolder(
     private val binding: MainRecyclerViewItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(pokemon: Pokemon, listener: OnPokemonClickListener) {
+    fun bind(pokemon: Pokemon?, listener: OnPokemonClickListener) {
         binding.pokemon = pokemon
-        binding.layout.setOnClickListener { listener.onPokemonClick(pokemon.id) }
+        binding.layout.setOnClickListener { listener.onPokemonClick(pokemon?.id) }
         Glide.with(binding.root)
-            .load(pokemon.image)
+            .load(pokemon?.image)
             .placeholder(R.drawable.pokeball)
             .error(R.drawable.pokeball)
             .into(binding.image)

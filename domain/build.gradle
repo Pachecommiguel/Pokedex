@@ -24,6 +24,11 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        kotlinOptions {
+            freeCompilerArgs += [
+                    "-Xopt-in=kotlin.RequiresOptIn"
+            ]
+        }
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -38,4 +43,7 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }
