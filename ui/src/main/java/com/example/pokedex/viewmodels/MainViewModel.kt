@@ -21,6 +21,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel(), OnPokemonClickListener {
 
     private val navDirection: SingleLiveEvent<NavDirections> = SingleLiveEvent()
+    private lateinit var state: Flow<PagingData<MainState>>
 
     override fun onPokemonClick(id: Int?) {
         id?.let { navDirection.value = MainFragmentDirections.actionMainToDetails(it) }
@@ -28,5 +29,8 @@ class MainViewModel @Inject constructor(
 
     fun getNavDirection(): LiveData<NavDirections> = navDirection
 
-    fun getState(): Flow<PagingData<MainState>> = useCase().cachedIn(viewModelScope)
+    fun getState() = when(::state.isInitialized) {
+        true -> state
+        false -> useCase().cachedIn(viewModelScope).also { state = it }
+    }
 }
