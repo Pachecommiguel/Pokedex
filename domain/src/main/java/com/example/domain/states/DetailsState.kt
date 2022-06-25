@@ -5,13 +5,5 @@ data class DetailsState(
     val image: String?,
     val height: String,
     val weight: String,
-    val moves: List<String>,
-    val labels: Labels
-)
-
-data class Labels(
-    val name: String,
-    val height: String,
-    val weight: String,
-    val moves: String
+    val moves: List<String>
 )

@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="error_button">Retry</string>
-
     <string name="pokemon_default_stat">Unknown</string>
     <string name="pokemon_default_height">-- cm</string>
     <string name="pokemon_default_weight">-- kg</string>
-
-    <string name="details_name_label">NAME :</string>
-    <string name="details_height_label">HEIGHT :</string>
-    <string name="details_weight_label">WEIGHT :</string>
-    <string name="details_moves_label">MOVES</string>
-
-    <string name="error_default">Unable to connect</string>
-    <string name="error_empty">No results available</string>
 </resources>
