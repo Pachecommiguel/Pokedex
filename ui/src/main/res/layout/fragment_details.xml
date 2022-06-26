@@ -104,6 +104,7 @@
             android:text="@string/details_moves_label"
             android:layout_marginStart="@dimen/details_layout_margin"
             android:layout_marginTop="@dimen/default_layout_margin"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@+id/weight_label"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/White.Bold.18"

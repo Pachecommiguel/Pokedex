@@ -40,7 +40,10 @@ class DetailsFragment : Fragment() {
 
     private fun onState(state: DetailsState) {
         binding.state = state
-        adapter.submitList(state.moves)
+        if (state.moves.isNotEmpty()) {
+            binding.movesLabel.visibility = View.VISIBLE
+            adapter.submitList(state.moves)
+        }
         Glide.with(requireContext())
             .load(state.image)
             .placeholder(R.drawable.pokeball)

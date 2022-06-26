@@ -1,7 +1,5 @@
 <resources>
-    <style name="Theme.Pokedex" parent="@android:style/Theme.NoTitleBar.Fullscreen">
-
-    </style>
+    <style name="Theme.Pokedex" parent="@android:style/Theme.NoTitleBar.Fullscreen"/>
 
     <style name="White">
         <item name="android:textColor">@android:color/white</item>
