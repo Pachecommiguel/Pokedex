@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/White.Bold.18"
+            style="@style/White.Bold.22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{state.title}"

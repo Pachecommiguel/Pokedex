@@ -3,7 +3,11 @@
     <dimen name="default_layout_margin">20dp</dimen>
     <dimen name="default_image_width">150dp</dimen>
     <dimen name="default_image_height">150dp</dimen>
+
     <dimen name="main_name_margin_start">20dp</dimen>
     <dimen name="load_button_width">150dp</dimen>
     <dimen name="dialog_layout_margin">40dp</dimen>
+
+    <dimen name="details_layout_margin">40dp</dimen>
+    <dimen name="details_name_margin_top">60dp</dimen>
 </resources>

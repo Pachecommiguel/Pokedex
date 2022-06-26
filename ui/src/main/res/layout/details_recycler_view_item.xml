@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_ellipse_red"
-        android:layout_marginStart="@dimen/default_layout_margin"
+        android:layout_marginStart="@dimen/dialog_layout_margin"
         android:layout_marginTop="@dimen/default_layout_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
