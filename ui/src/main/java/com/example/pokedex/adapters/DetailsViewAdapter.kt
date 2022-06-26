@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.databinding.DetailsRecyclerViewItemBinding
 
-class DetailsViewAdapter
-    : ListAdapter<String, DetailsViewAdapter.DetailsViewHolder>(DetailsDiffCallback()) {
+class DetailsViewAdapter : ListAdapter<String, DetailsViewAdapter.DetailsViewHolder>(DetailsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DetailsViewHolder(
         DetailsRecyclerViewItemBinding.inflate(
